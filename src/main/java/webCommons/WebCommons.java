@@ -2,6 +2,7 @@ package webCommons;
 
 import base.BaseClass;
 import constants.Constants;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -313,4 +315,99 @@ public class WebCommons {
                 .filter(text -> !text.isEmpty())
                 .collect(Collectors.toList());
     }
+
+
+    // Take screenshot and return byte[] for reports + save file locally
+    public byte[] captureScreenshot(String screenshotName) {
+
+        try {
+            // Convert to TakesScreenshot
+            TakesScreenshot ts = (TakesScreenshot) driver;
+
+            // Return screenshot bytes for Cucumber attachment
+            byte[] screenshotBytes = ts.getScreenshotAs(OutputType.BYTES);
+
+            // Save screenshot as a file in /Screenshots folder
+            File source = ts.getScreenshotAs(OutputType.FILE);
+
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            String screenshotPath = System.getProperty("user.dir") +
+                    "/Screenshots/" + screenshotName + "_" + timestamp + ".png";
+
+            File destination = new File(screenshotPath);
+            destination.getParentFile().mkdirs(); //  Create folder if missing
+            source.renameTo(destination);
+
+            System.out.println("Screenshot saved at: " + screenshotPath);
+
+            return screenshotBytes; // for attaching to Cucumber report
+
+        } catch (Exception e) {
+            System.out.println("Failed to capture screenshot: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
+    //  Capture screenshot of a specific WebElement (returns byte[] + saves file)
+    public byte[] captureElementScreenshot(WebElement element, String screenshotName) {
+
+        try {
+            // Scroll element into view before capturing
+            scrollToElement(element);
+
+            // Create timestamp for file naming
+            String timestamp = String.valueOf(System.currentTimeMillis());
+
+            //  Get screenshot as byte[] for Cucumber report
+            byte[] bytes = element.getScreenshotAs(OutputType.BYTES);
+
+            // Save screenshot file locally
+            File srcFile = element.getScreenshotAs(OutputType.FILE);
+
+            String screenshotPath = System.getProperty("user.dir")
+                    + "/Screenshots/WebElements/"
+                    + screenshotName + "_" + timestamp + ".png";
+
+            File finalFile = new File(screenshotPath);
+
+            // Create folder if not exists (safe even if exists)
+            finalFile.getParentFile().mkdirs();
+
+            srcFile.renameTo(finalFile);
+
+            System.out.println("Element Screenshot saved at: " + screenshotPath);
+
+            return bytes;
+
+        } catch (Exception e) {
+            System.out.println(" Failed to capture element screenshot: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+    //Cucumber WebCommons
+
+
+    public void logToCucumberReport(Scenario scenario, String message) {
+        scenario.attach(message.getBytes(), "text/plain", "Log");
+    }
+
+
+
+    public void attachElementScreenshotToCucumberReport(Scenario scenario, WebElement element, String fileName) {
+
+        byte[] screenshot = captureElementScreenshot(element, fileName);
+
+        if (screenshot != null) {
+            scenario.attach(screenshot, "image/png", fileName);
+        }
+    }
+
+
+
+
+
 }

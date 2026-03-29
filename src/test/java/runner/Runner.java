@@ -13,7 +13,7 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber.json"
         },
         monochrome = true,
-       tags = "@Rankingpage"
+       tags = "@NewsTests"
 )
 public class Runner extends AbstractTestNGCucumberTests {
 
