@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import base.BaseClass;
 import constants.Constants;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import pageObjects.RankingpageElements;
@@ -14,6 +15,22 @@ public class RankingpageStepDefinitions {
     private WebDriver driver = BaseClass.getDriver();
     private RankingpageElements rankingPage = new RankingpageElements(driver);
     private WebCommons commons = new WebCommons(driver);
+
+
+    private Scenario scenario;
+
+    @io.cucumber.java.Before
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
+    }
+
+
+
+    public void logToReport(Scenario scenario, String message) {
+        scenario.attach(message.getBytes(), "text/plain", "Log");
+    }
+
+
 
 
 
@@ -98,16 +115,34 @@ public class RankingpageStepDefinitions {
         List<String> names = commons.getTextFromElements(rankingPage.topBatterNames);
         List<String> points = commons.getTextFromElements(rankingPage.topBatterPoints);
 
-        System.out.println("\n Top 10 Test Batters:");
-        for (int i = 0; i < 10; i++)
-            System.out.println((i + 1) + ". " + names.get(i) + " - " + points.get(i));
+        StringBuilder sb = new StringBuilder("\nTop 10 Test Batters:\n");
+        for (int i = 0; i < 10; i++) {
+            sb.append(i + 1)
+                    .append(". ")
+                    .append(names.get(i))
+                    .append(" - ")
+                    .append(points.get(i))
+                    .append("\n");
+        }
+
+        String logOutput = sb.toString();
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
+
     }
 
     @Then("User should be able to get Best Test Batsman")
     public void get_best_test_batsman() {
-        System.out.println("\n Best Test Batsman: " +
-                rankingPage.topBatterNames.get(0).getText() +
-                " (" + rankingPage.topBatterPoints.get(0).getText() + ")");
+        commons.explicitWait(rankingPage.topBatterNames.get(0));
+
+        String name = rankingPage.topBatterNames.get(0).getText();
+        String points = rankingPage.topBatterPoints.get(0).getText();
+
+        String logOutput = "\nBest Batsman: " + name + " (" + points + " pts)";
+
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
+
     }
 
 
@@ -129,10 +164,20 @@ public class RankingpageStepDefinitions {
     public void get_top_10_odi_batters() {
         List<String> names = commons.getTextFromElements(rankingPage.topBatterNames);
         List<String> points = commons.getTextFromElements(rankingPage.topBatterPoints);
+        StringBuilder sb = new StringBuilder("\nTop 10 ODI Batters:\n");
+        for (int i = 0; i < 10; i++) {
+            sb.append(i + 1)
+                    .append(". ")
+                    .append(names.get(i))
+                    .append(" - ")
+                    .append(points.get(i))
+                    .append("\n");
+        }
 
-        System.out.println("\n Top 10 ODI Batters:");
-        for (int i = 0; i < 10; i++)
-            System.out.println((i + 1) + ". " + names.get(i) + " - " + points.get(i));
+        String logOutput = sb.toString();
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
+
     }
 
 
@@ -155,18 +200,39 @@ public class RankingpageStepDefinitions {
         List<String> names = commons.getTextFromElements(rankingPage.topBatterNames);
         List<String> points = commons.getTextFromElements(rankingPage.topBatterPoints);
 
-        System.out.println("\n Top 10 T20I Batters:");
-        for (int i = 0; i < 10; i++)
-            System.out.println((i + 1) + ". " + names.get(i) + " - " + points.get(i));
+        StringBuilder sb = new StringBuilder("\nTop 10 20i Batters:\n");
+        for (int i = 0; i < 10; i++) {
+            sb.append(i + 1)
+                    .append(". ")
+                    .append(names.get(i))
+                    .append(" - ")
+                    .append(points.get(i))
+                    .append("\n");
+        }
+
+        String logOutput = sb.toString();
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
+
+
     }
 
 
     // COMMON BEST BATSMAN (Men/Women)
     @Then("User should be able to get Top Batsman")
     public void get_top_batsman() {
-        System.out.println("\n Top Batsman: " +
-                rankingPage.topBatterNames.get(0).getText() +
-                " (" + rankingPage.topBatterPoints.get(0).getText() + ")");
+        // wait for first element
+        commons.explicitWait(rankingPage.topBatterNames.get(0));
+
+        String name = rankingPage.topBatterNames.get(0).getText();
+        String points = rankingPage.topBatterPoints.get(0).getText();
+
+        String logOutput = "\nBest Batsman: " + name + " (" + points + " pts)";
+
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
+
+
     }
 
 
@@ -182,10 +248,21 @@ public class RankingpageStepDefinitions {
     public void get_top_10_odi_women_batters() {
         List<String> names = commons.getTextFromElements(rankingPage.topBatterNames);
         List<String> points = commons.getTextFromElements(rankingPage.topBatterPoints);
+        StringBuilder sb = new StringBuilder("\nTop 10 ODI Women Batters:\n");
+        for (int i = 0; i < 10; i++) {
+            sb.append(i + 1)
+                    .append(". ")
+                    .append(names.get(i))
+                    .append(" - ")
+                    .append(points.get(i))
+                    .append("\n");
+        }
 
-        System.out.println("\n Top 10 ODI Women Batters:");
-        for (int i = 0; i < 10; i++)
-            System.out.println((i + 1) + ". " + names.get(i) + " - " + points.get(i));
+        String logOutput = sb.toString();
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
+
+
     }
 
     //  WOMEN — T20I FORMAT (MISSING EARLIER — NOW FIXED)
@@ -202,9 +279,21 @@ public class RankingpageStepDefinitions {
         List<String> names = commons.getTextFromElements(rankingPage.topBatterNames);
         List<String> points = commons.getTextFromElements(rankingPage.topBatterPoints);
 
-        System.out.println("\n Top 10 T20I Women Batters:");
-        for (int i = 0; i < 10; i++)
-            System.out.println((i + 1) + ". " + names.get(i) + " - " + points.get(i));
+        StringBuilder sb = new StringBuilder("\nTop 10 T20i Women Batters:\n");
+        for (int i = 0; i < 10; i++) {
+            sb.append(i + 1)
+                    .append(". ")
+                    .append(names.get(i))
+                    .append(" - ")
+                    .append(points.get(i))
+                    .append("\n");
+        }
+
+        String logOutput = sb.toString();
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
+
+
     }
 
 
@@ -217,7 +306,10 @@ public class RankingpageStepDefinitions {
         String name = rankingPage.topBatterNames.get(0).getText();
         String points = rankingPage.topBatterPoints.get(0).getText();
 
-        System.out.println("\n Best Batsman: " + name + " (" + points + " pts)");
+        String logOutput = "\nBest Batsman: " + name + " (" + points + " pts)";
+
+        System.out.println(logOutput);
+        commons.logToCucumberReport(scenario, logOutput);
     }
 
-}
+    }
