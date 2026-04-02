@@ -32,7 +32,7 @@ public class RankingpageElements extends WebCommons {
     @FindBy(xpath = "//a[@title='ICC Rankings - Women']")
     public WebElement iccWomensRankingLink;
 
-    // ********************* PAGE TITLES ************************
+    //  PAGE TITLES
 
     @FindBy(xpath = "//h1[@class='text-lg tb:text-2xl text-cbWhite wb:!text-black wb:font-bold font-medium false line-clamp-1']")
     public WebElement mensRankingPageTitle;
@@ -42,8 +42,6 @@ public class RankingpageElements extends WebCommons {
 
     // TOP PLAYER ELEMENTS
 
-    @FindBy(xpath = "//div[@class='grid grid-cols-4 items-center border-b border-cbBorderGrey py-2 px-3']//div[@class='text-base font-medium']")
-    public WebElement topBattersName;
 
     @FindBy(xpath = "//div[@class='grid grid-cols-4 items-center border-b border-cbBorderGrey py-2 px-3']//div[@class='text-base font-medium']")
     public List<WebElement> topBatterNames;
@@ -51,8 +49,6 @@ public class RankingpageElements extends WebCommons {
     @FindBy(xpath="//div[@class='grid grid-cols-4 items-center border-b border-cbBorderGrey py-2 px-3']//div[@class='col-span-1 text-base text-right mr-1']")
     public List<WebElement> topBatterPoints;
 
-    @FindBy(xpath = "//div[@class='grid grid-cols-4 items-center border-b border-cbBorderGrey py-2 px-3']//div[@class='col-span-1 text-base text-right mr-1']")
-    public WebElement topPlayerPoints;
 
     // FORMAT SELECTORS
 

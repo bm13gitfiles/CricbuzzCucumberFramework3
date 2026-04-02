@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webCommons.WebCommons;
 
+import java.util.List;
+
 public class PSLSeriespageElements extends WebCommons {
 
     public WebDriver driver;
@@ -42,13 +44,76 @@ public class PSLSeriespageElements extends WebCommons {
     public WebElement pslSeriesTopNewsIntro;
 
 
+    //Points Table Locators
+
+    @FindBy(xpath = "//a[@title='Table - Pakistan Super League 2026']")
+    public WebElement pslSeriesPointsTableLink;
+
+    @FindBy(xpath = "//div[@class='w-full wb:w-[67%] min-h-page relative wb:bg-white']//div[@class='wb:p-3']")
+    public WebElement pslSeriesPointsTable;
+
+    @FindBy(xpath = "//div[@class=' flex flex-col justify-center bg-white']//div[@class='mx-2']")
+    public List<WebElement> pslSeriesPointsTableTeamNames;
+
+    @FindBy(xpath = "//div[@class=' flex flex-col justify-center bg-white']//div[@class='flex justify-center items-center'][5]")
+    public List<WebElement> pslSeriesPointsTableTeamPoints;
+
+    @FindBy(xpath = "//div[@class=' flex flex-col justify-center bg-white']//div[@class='flex justify-center items-center'][6]")
+    public List<WebElement> pslSeriesPointsTableTeamNRR;
 
 
+    // PSL Most Runs and Most wickets Statistics
+
+    @FindBy(xpath = "//a[@title='Stats - Pakistan Super League 2026']")
+    public WebElement pslSeriesStatsLink;
 
 
+    @FindBy(xpath = "//table[@class='w-full wb:mt-3 text-xs wb:text-sm table-auto ']")
+    public WebElement pslMostRunsTable;
+
+    @FindBy(xpath = "//tbody//tr[@class='wb:text-sm border-b border-cbBorderGrey z-2']//a")
+    public List<WebElement> pslMostRunsBatsmenNames;
+
+    @FindBy(xpath = "//tbody//tr[@class='wb:text-sm border-b border-cbBorderGrey z-2']//a")
+    public List<WebElement> pslMostWicketsBowlerNames;
 
 
+    @FindBy(xpath = "//tbody//td[@class='bg-white w-20 text-center p-2 font-bold text-sm whitespace-nowrap']")
+    public List<WebElement> pslMostRunsBatsmenScores;
 
+    @FindBy(xpath = "//tbody//td[@class='bg-white w-20 text-center p-2 font-bold text-sm whitespace-nowrap']")
+    public List<WebElement> pslMostWickets;
+
+
+    @FindBy(xpath = "//div[contains(@class,'flex justify-between')]//span[text()='Most Wickets']")
+    public WebElement pslMostWicketsLink;
+
+    @FindBy(xpath = "(//table[@class='w-full wb:mt-3 text-xs wb:text-sm table-auto ']/thead/tr/th[text()='WKTS'])[2]")
+    public WebElement pslMostWicketsTable;
+
+
+    // Squads and Captains
+
+    @FindBy(xpath = "//a[@title='Squads - Pakistan Super League 2026']")
+    public WebElement pslSeriesSquadsLink;
+
+    @FindBy(xpath = "(//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1])")
+    public List<WebElement> pslTeamNames;
+
+
+    @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span")
+    public List<WebElement> pslTeamCaptain;
+
+
+    @FindBy(xpath = "(//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')][1])")
+    public WebElement pslTeamCaptainRole;
+
+
+    @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span//parent::span")
+    public List<WebElement> pslTeamSquadPlayer;
+
+    @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//p")
+    public List<WebElement> pslTeamSquadRole;
 
 
 
