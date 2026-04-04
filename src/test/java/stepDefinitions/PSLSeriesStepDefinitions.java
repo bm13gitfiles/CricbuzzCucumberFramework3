@@ -327,11 +327,10 @@ public class PSLSeriesStepDefinitions {
         public void psl_teams_should_be_displayed() {
 
         commons.explicitWait(psl2026PageElements.pslTeamNames.get(0));
-        System.out.println("\n PSL 2026 Points team names displayed : ");
 
         List<String>pslTeamNames = commons.getTextFromElements(psl2026PageElements.pslTeamNames);
 
-        StringBuffer sb = new StringBuffer("\n PSL 2026 Points team names displayed : ");
+        StringBuffer sb = new StringBuffer("PSL 2026 Points team names displayed : \n");
 
         for (int i=0; i<8; i++){
             sb.append(i+1).append(". ").append(pslTeamNames.get(i)).append("\n");
@@ -346,19 +345,22 @@ public class PSLSeriesStepDefinitions {
     @Then("The user should be able to identify the captain of each team")
     public void user_should_identify_team_captains() throws InterruptedException {
 
-        commons.explicitWait(psl2026PageElements.pslTeamCaptainRole);
+        commons.explicitWait(psl2026PageElements.pslTeamCaptain);
 
         List<String> pslTeamNames = commons.getTextFromElements(psl2026PageElements.pslTeamNames);
-        String pslCaptainNames = commons.getText(psl2026PageElements.pslTeamCaptainRole);
 
-        StringBuffer sb = new StringBuffer("\n Teams and their Captains : \n");
+
+        StringBuffer sb = new StringBuffer("Teams and their Captains : \n");
 
         for (int i = 0; i < pslTeamNames.size(); i++) {
             String teamName = pslTeamNames.get(i);
-            String captainName = pslCaptainNames.replace("(Captain)", "").trim(); // clean up text
+            String pslCaptainNames = commons.getText(psl2026PageElements.pslTeamCaptain);
+
+            pslCaptainNames = pslCaptainNames.replace(" (Captain)", "");
+
 
             sb.append(i + 1).append(". ").append(teamName)
-                    .append(" - Skipper : ").append(captainName).append("\n");
+                    .append(" - Skipper : ").append(pslCaptainNames).append("\n");
 
             commons.scrollToElement(psl2026PageElements.pslTeamNames.get(i));
             commons.click(psl2026PageElements.pslTeamNames.get(i));
