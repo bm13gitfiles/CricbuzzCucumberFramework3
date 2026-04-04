@@ -97,16 +97,15 @@ public class PSLSeriespageElements extends WebCommons {
     @FindBy(xpath = "//a[@title='Squads - Pakistan Super League 2026']")
     public WebElement pslSeriesSquadsLink;
 
-    @FindBy(xpath = "(//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1])")
+    @FindBy(xpath = "//h2[text()='SQUADS FOR PAKISTAN SUPER LEAGUE 2026']")
+    public WebElement pslSquadsPage;
+
+    @FindBy(xpath = "//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1]")
     public List<WebElement> pslTeamNames;
 
 
-    @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span")
-    public List<WebElement> pslTeamCaptain;
-
-
-    @FindBy(xpath = "(//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')][1])")
-    public WebElement pslTeamCaptainRole;
+    @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')]/..")
+    public WebElement pslTeamCaptain;
 
 
     @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span//parent::span")
