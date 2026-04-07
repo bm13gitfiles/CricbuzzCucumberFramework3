@@ -9,11 +9,11 @@ import org.testng.annotations.DataProvider;
         glue = {"stepDefinitions"},
         plugin = {
                 "pretty",
-                "html:target/cucumber-html-report.html",
+                "html:target/cucumber-html-report",
                 "json:target/cucumber.json"
         },
         monochrome = true,
-       tags = "@CaptainTestIPL"
+       tags = "@SquadsTests"
 )
 public class Runner extends AbstractTestNGCucumberTests {
 

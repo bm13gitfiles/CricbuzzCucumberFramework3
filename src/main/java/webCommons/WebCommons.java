@@ -286,6 +286,12 @@ public class WebCommons {
         }
     }
 
+    public WebElement findElement(By locator, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+
     // Implicit wait
     public void implicitWait() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constants.TIMEOUT));

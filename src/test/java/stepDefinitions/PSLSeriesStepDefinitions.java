@@ -3,14 +3,18 @@ package stepDefinitions;
 import base.BaseClass;
 import constants.Constants;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pageObjects.PSLSeriespageElements;
 import pageObjects.RankingpageElements;
 import webCommons.WebCommons;
 import io.cucumber.java.Scenario;
 
+import java.time.Duration;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -343,36 +347,72 @@ public class PSLSeriesStepDefinitions {
         }
 
     @Then("The user should be able to identify the captain of each team")
-    public void user_should_identify_team_captains() throws InterruptedException {
+    public void user_should_identify_team_captains() {
 
-        commons.explicitWait(psl2026PageElements.pslTeamCaptain);
+        By teamLocator = By.xpath("//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1]");
+        By captainLocator = By.xpath("//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')]/..");
 
-        List<String> pslTeamNames = commons.getTextFromElements(psl2026PageElements.pslTeamNames);
+        // Wait for teams to load
+        commons.explicitWait(teamLocator);
 
+        int teamCount = driver.findElements(teamLocator).size();
 
-        StringBuffer sb = new StringBuffer("Teams and their Captains : \n");
+        StringBuilder sb = new StringBuilder("Teams and their Captains : \n");
 
-        for (int i = 0; i < pslTeamNames.size(); i++) {
-            String teamName = pslTeamNames.get(i);
-            String pslCaptainNames = commons.getText(psl2026PageElements.pslTeamCaptain);
+        String previousCaptain = "";
 
-            pslCaptainNames = pslCaptainNames.replace(" (Captain)", "");
+        for (int i = 1; i <= teamCount; i++) {
 
+            // Always re-fetch team element (NO stale)
+            By indexedTeam = By.xpath("(" +
+                    "//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1]"
+                    + ")[" + i + "]");
 
-            sb.append(i + 1).append(". ").append(teamName)
-                    .append(" - Skipper : ").append(pslCaptainNames).append("\n");
+            WebElement teamElement = commons.findElement(indexedTeam, 10);
 
-            commons.scrollToElement(psl2026PageElements.pslTeamNames.get(i));
-            commons.click(psl2026PageElements.pslTeamNames.get(i));
-            Thread.sleep(2000);
+            String teamName = teamElement.getText();
+
+            // Scroll + click using your methods
+            commons.scrollToElement(teamElement);
+            commons.jsClick(teamElement);
+
+            // Wait until captain text changes (NO lambda)
+            int retry = 0;
+            String currentCaptain = "";
+
+            while (retry < 10) {
+
+                WebElement captainElement = commons.findElement(captainLocator, 10);
+                currentCaptain = captainElement.getText();
+
+                if (!currentCaptain.isEmpty() && !currentCaptain.equals(previousCaptain)) {
+                    break;
+                }
+
+                commons.threadWait(500); // using your wait method
+                retry++;
+            }
+
+            String captainName = currentCaptain
+                    .replace(" (Captain)", "")
+                    .trim();
+
+            sb.append(i)
+                    .append(". ")
+                    .append(teamName)
+                    .append(" - Skipper : ")
+                    .append(captainName)
+                    .append("\n");
+
+            // update for next iteration
+            previousCaptain = currentCaptain;
         }
 
         String logOutput = sb.toString();
         System.out.println(logOutput);
         commons.logToCucumberReport(scenario, logOutput);
-
     }
 
-    }
+}
 
 
