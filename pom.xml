@@ -108,9 +108,9 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.2.1</version>
                     <configuration>
-                        <!-- Point to your Cucumber runner class -->
                         <includes>
-                            <include>**/TestRunner.java</include>
+                            <!-- Match your runner class -->
+                            <include>**/Runner.java</include>
                         </includes>
                         <testFailureIgnore>false</testFailureIgnore>
                         <useSystemClassLoader>true</useSystemClassLoader>
