@@ -98,14 +98,14 @@ public class IPLSeriespageElements extends WebCommons {
     @FindBy(xpath = "//a[@title='Squads - IPL 2026']")
     public WebElement iplSeriesSquadsLink;
 
-    @FindBy(xpath = "(//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1])")
+    @FindBy(xpath = "//h2[text()='SQUADS FOR INDIAN PREMIER LEAGUE 2026']")
+    public WebElement iplSquadsPage;
+
+    @FindBy(xpath = "//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1]")
     public List<WebElement> iplTeamNames;
 
-    @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span")
-    public List<WebElement> iplTeamCaptain;
-
-    @FindBy(xpath = "(//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')][1])")
-    public WebElement iplTeamCaptainRole;
+    @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')]/..")
+    public WebElement iplTeamCaptain;
 
     @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span//parent::span")
     public List<WebElement> iplTeamSquadPlayer;

@@ -6,6 +6,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageObjects.IPLSeriespageElements;
@@ -76,26 +77,27 @@ public class IPLSeriesStepDefinitions {
         System.out.println("IPL 2026 page launched");
     }
 
-    @When("User selects the Top News section")
-    public void user_selects_the_top_news_section() {
-        commons.explicitWait(ipl2026PageElements.iplSeriesTopNews);
-        commons.click(ipl2026PageElements.iplSeriesTopNews);
+    @When("User selects the IPL Top News section")
+    public void user_selects_the_ipl_top_news_section() {
 
-        System.out.println("User selected the Top News section");
-    }
+            commons.explicitWait(ipl2026PageElements.iplSeriesTopNews);
+            commons.click(ipl2026PageElements.iplSeriesTopNews);
 
-    @Then("The top story should be displayed to the user")
-    public void the_top_story_should_be_displayed_to_the_user() {
+            System.out.println("User selected the Top News section");
+            }
+
+    @Then("IPL top story should be displayed to the user")
+    public void ipl_top_story_should_be_displayed_to_the_user() {
         commons.explicitWait(ipl2026PageElements.iplSeriesTopNewsTitle);
 
         String topStoryTitle = commons.getText(ipl2026PageElements.iplSeriesTopNewsTitle);
 
         commons.logToCucumberReport(scenario,
-                "Top News Title: " + topStoryTitle);
+                "IPL Top News Title: " + topStoryTitle);
     }
 
-    @Then("A relevant photograph for the top story should be displayed with a caption")
-    public void a_relevant_photograph_for_the_top_story_should_be_displayed_with_a_caption() {
+    @Then("A relevant photograph for the IPL top story should be displayed with a caption")
+    public void a_relevant_photograph_for_the_ipl_top_story_should_be_displayed_with_a_caption() {
 
         commons.explicitWait(ipl2026PageElements.iplSeriesTopNewsImage);
 
@@ -109,39 +111,40 @@ public class IPLSeriesStepDefinitions {
         String caption = commons.getText(ipl2026PageElements.iplSeriesTopNewsImageDescription);
 
         commons.logToCucumberReport(scenario,
-                "Top News Image Caption: " + caption);
+                "Top IPL News Image Caption: " + caption);
     }
 
-    @Then("The first paragraph of the top story should be displayed")
-    public void the_first_paragraph_of_the_top_story_should_be_displayed() {
-
+    @Then("The first paragraph of the IPL top story should be displayed")
+    public void the_first_paragraph_of_the_ipl_top_story_should_be_displayed() {
         commons.explicitWait(ipl2026PageElements.iplSeriesTopNewsIntro);
 
         String introText = commons.getText(ipl2026PageElements.iplSeriesTopNewsIntro);
 
         commons.logToCucumberReport(scenario,
-                "Top News First Paragraph: " + introText);
+                "Top IPL News First Paragraph: " + introText);
     }
+
 
 //  IPL Points Table
 
 
-    @When("User selects the Points Table section")
-    public void user_selects_the_points_table_section() {
-        commons.explicitWait(ipl2026PageElements.iplSeriesPointsTableLink);
-        commons.click(ipl2026PageElements.iplSeriesPointsTableLink);
-        System.out.println("IPL 2026 Points Table link clicked");
-    }
+    @When("User selects the IPL Points Table section")
+    public void user_selects_the_ipl_points_table_section() {
 
-    @Then("The points table should be displayed to the user")
-    public void the_points_table_should_be_displayed_to_the_user() {
+            commons.explicitWait(ipl2026PageElements.iplSeriesPointsTableLink);
+            commons.click(ipl2026PageElements.iplSeriesPointsTableLink);
+            System.out.println("IPL 2026 Points Table link clicked");
+            }
+
+    @Then("IPL points table should be displayed to the user")
+    public void ipl_points_table_should_be_displayed_to_the_user() {
         commons.explicitWait(ipl2026PageElements.iplSeriesPointsTable);
         List<String> topRankedTeams =  commons.getTextFromElements
                 (ipl2026PageElements.iplSeriesPointsTableTeamNames);
         List<String>teamNRR = commons.getTextFromElements(ipl2026PageElements.iplSeriesPointsTableTeamNRR);
         List<String>teamPoints = commons.getTextFromElements(ipl2026PageElements.iplSeriesPointsTableTeamPoints);
 
-        StringBuilder sb = new StringBuilder("\nTop teams in playoff contention:\n");
+        StringBuilder sb = new StringBuilder("\nTop IPL teams in playoff contention:\n");
         for (int i = 0; i < 8; i++) {
             sb.append(i + 1)
                     .append(". ")
@@ -159,13 +162,13 @@ public class IPLSeriesStepDefinitions {
         commons.logToCucumberReport(scenario, logOutput);
     }
 
-    @Then("The user should be able to identify the top team in playoff contention")
-    public void the_user_should_be_able_to_identify_the_top_team_in_playoff_contention() {
+    @Then("The user should be able to identify the top team in IPL playoff contention")
+    public void the_user_should_be_able_to_identify_the_top_team_in_ipl_playoff_contention() {
         List<String>topRankedTeams =  commons.getTextFromElements(ipl2026PageElements.iplSeriesPointsTableTeamNames);
         List<String>teamNRR = commons.getTextFromElements(ipl2026PageElements.iplSeriesPointsTableTeamNRR);
         List<String>teamPoints = commons.getTextFromElements(ipl2026PageElements.iplSeriesPointsTableTeamPoints);
 
-        StringBuilder sb = new StringBuilder("\nTop teams in playoff contention:\n");
+        StringBuilder sb = new StringBuilder("\nTop teams in IPL playoff contention:\n");
         for (int i = 0; i < 4; i++) {
             sb.append(i + 1)
                     .append(". ")
@@ -184,16 +187,19 @@ public class IPLSeriesStepDefinitions {
 
     // IPL Most Runs Statistics
 
-    @When("User selects the Stats section")
-    public void user_selects_the_stats_section() {
 
-        commons.explicitWait(ipl2026PageElements.iplSeriesStatsLink);
-        commons.click(ipl2026PageElements.iplSeriesStatsLink);
-        System.out.println("IPL 2026 Stats link clicked");
-    }
+    @When("User selects the IPL Stats section")
+    public void user_selects_the_ipl_stats_section() {
 
-    @Then("The list of batsmen with the most runs should be displayed to the user")
-    public void the_list_of_batsmen_with_the_most_runs_should_be_displayed_to_the_user() {
+            commons.explicitWait(ipl2026PageElements.iplSeriesStatsLink);
+            commons.click(ipl2026PageElements.iplSeriesStatsLink);
+            System.out.println("IPL 2026 Stats link clicked");
+
+        }
+
+
+    @Then("The list of IPL batsmen with the most runs should be displayed to the user")
+    public void the_list_of_ipl_batsmen_with_the_most_runs_should_be_displayed_to_the_user() {
         commons.explicitWait(ipl2026PageElements.iplMostRunsTable);
         System.out.println("IPL 2026 Most Runs Table Loaded");
 
@@ -214,34 +220,34 @@ public class IPLSeriesStepDefinitions {
 
         System.out.println(logOutput);
         commons.logToCucumberReport(scenario, logOutput);
-
     }
 
-    @Then("The user should be able to identify the top batsman in contention for the Orange Cap")
-    public void the_user_should_be_able_to_identify_the_top_batsman_in_contention_for_the_orange_cap() {
+    @Then("The user should be able to identify the top IPL batsman in contention for the Orange Cap")
+    public void the_user_should_be_able_to_identify_the_top_ipl_batsman_in_contention_for_the_orange_cap() {
         String topBatsmanName = ipl2026PageElements.iplMostRunsBatsmenNames.get(0).getText();
         int topBatsmanScore = parseInt(ipl2026PageElements.iplMostRunsBatsmenScores.get(0).getText());
-        String logOutput = "\nOrange Cap Contender : "+topBatsmanName + " with Score " +topBatsmanScore;
+        String logOutput = "\nIPL Orange Cap Contender : "+topBatsmanName + " with Score " +topBatsmanScore;
         System.out.println(logOutput);
         commons.logToCucumberReport(scenario, logOutput);
     }
 
     // IPL Most Wickets Statistics
 
-    @When("User selects Stats > Most Wickets")
-    public void user_selects_stats_most_wickets() throws InterruptedException {
-        commons.explicitWait(ipl2026PageElements.iplSeriesStatsLink);
-        commons.click(ipl2026PageElements.iplSeriesStatsLink);
-        System.out.println("IPL 2026 Stats link clicked");
-        commons.explicitWait(ipl2026PageElements.iplMostWicketsLink);
-        commons.scrollToElement(ipl2026PageElements.iplMostWicketsLink);
-        commons.click(ipl2026PageElements.iplMostWicketsLink);
-        System.out.println("IPL 2026 Stats - Most wickets clicked");
-        Thread.sleep(1000);
-    }
 
-    @Then("The list of bowlers with the most wickets should be displayed to the user")
-    public void the_list_of_bowlers_with_the_most_wickets_should_be_displayed_to_the_user() {
+    @When("User selects IPL Stats > Most Wickets")
+    public void user_selects_ipl_stats_most_wickets() throws InterruptedException {
+            commons.explicitWait(ipl2026PageElements.iplSeriesStatsLink);
+            commons.click(ipl2026PageElements.iplSeriesStatsLink);
+            System.out.println("IPL 2026 Stats link clicked");
+            commons.explicitWait(ipl2026PageElements.iplMostWicketsLink);
+            commons.scrollToElement(ipl2026PageElements.iplMostWicketsLink);
+            commons.click(ipl2026PageElements.iplMostWicketsLink);
+            System.out.println("IPL 2026 Stats - Most wickets clicked");
+            Thread.sleep(1000);
+      }
+
+    @Then("The list of IPL bowlers with the most wickets should be displayed to the user")
+    public void the_list_of_ipl_bowlers_with_the_most_wickets_should_be_displayed_to_the_user() {
         commons.explicitWait(ipl2026PageElements.iplMostWicketsTable);
 
         System.out.println("IPL 2026 Most Wickets Table Loaded");
@@ -263,15 +269,14 @@ public class IPLSeriesStepDefinitions {
 
         System.out.println(logOutput);
         commons.logToCucumberReport(scenario, logOutput);
-
     }
 
-    @Then("The user should be able to identify the top bowler in contention for the Purple Cap")
-    public void the_user_should_be_able_to_identify_the_top_bowler_in_contention_for_the_purple_cap() {
+    @Then("The user should be able to identify the top IPL bowler in contention for the Purple Cap")
+    public void the_user_should_be_able_to_identify_the_top_ipl_bowler_in_contention_for_the_purple_cap() {
         List<String> bowlerNames = commons.getTextFromElements(ipl2026PageElements.iplMostWicketsBowlerNames);
         List<String> bowlerWickets = commons.getTextFromElements(ipl2026PageElements.iplMostWickets);
 
-        StringBuffer sb = new StringBuffer("\nPurple Cap Contender : ");
+        StringBuffer sb = new StringBuffer("\nIPL Purple Cap Contender : ");
 
         sb.append(bowlerNames.get(0)).append(" with wickets ").append(bowlerWickets.get(0));
 
@@ -283,8 +288,8 @@ public class IPLSeriesStepDefinitions {
 // IPL Squads & Captains
 
 
-    @When("User selects the Squads section")
-    public void user_selects_the_squads_section() {
+    @When("User selects the IPL Squads section")
+    public void user_selects_the_ipl_squads_section() {
 
         commons.explicitWait(ipl2026PageElements.iplSeriesSquadsLink);
         commons.click(ipl2026PageElements.iplSeriesSquadsLink);
@@ -309,36 +314,72 @@ public class IPLSeriesStepDefinitions {
 
     }
 
-    @Then("The user should be able to identify the captain of each team")
-    public void the_user_should_be_able_to_identify_the_captain_of_each_team()throws InterruptedException {
 
-        commons.explicitWait((WebElement) ipl2026PageElements.iplTeamCaptain);
-
-        List<String> iplTeamNames = commons.getTextFromElements(ipl2026PageElements.iplTeamNames);
+    @Then("The user should be able to identify the captain of each IPL team")
+    public void the_user_should_be_able_to_identify_the_captain_of_each_ipl_team() throws InterruptedException {
 
 
-        StringBuffer sb = new StringBuffer("Teams and their Captains : \n");
+        By teamLocator = By.xpath("//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1]");
+        By captainLocator = By.xpath("//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')]/..");
 
-        for (int i = 0; i < iplTeamNames.size(); i++) {
-            String teamName = iplTeamNames.get(i);
-            String iplCaptainNames = commons.getText((WebElement) ipl2026PageElements.iplTeamCaptain);
+        // Wait for teams to load
+        commons.explicitWait(teamLocator);
 
-            iplCaptainNames = iplCaptainNames.replace(" (Captain)", "");
+        int teamCount = driver.findElements(teamLocator).size();
 
+        StringBuilder sb = new StringBuilder("IPL Teams and their Captains : \n");
 
-            sb.append(i + 1).append(". ").append(teamName)
-                    .append(" - Skipper : ").append(iplCaptainNames).append("\n");
+        String previousCaptain = "";
 
-            commons.scrollToElement(ipl2026PageElements.iplTeamNames.get(i));
-            commons.click(ipl2026PageElements.iplTeamNames.get(i));
-            Thread.sleep(2000);
+        for (int i = 1; i <= teamCount; i++) {
+
+            // Always re-fetch team element (NO stale)
+            By indexedTeam = By.xpath("(" +
+                    "//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1]"
+                    + ")[" + i + "]");
+
+            WebElement teamElement = commons.findElement(indexedTeam, 10);
+
+            String teamName = teamElement.getText();
+
+            // Scroll + click using your methods
+            commons.scrollToElement(teamElement);
+            commons.jsClick(teamElement);
+
+            // Wait until captain text changes (NO lambda)
+            int retry = 0;
+            String currentCaptain = "";
+
+            while (retry < 10) {
+
+                WebElement captainElement = commons.findElement(captainLocator, 10);
+                currentCaptain = captainElement.getText();
+
+                if (!currentCaptain.isEmpty() && !currentCaptain.equals(previousCaptain)) {
+                    break;
+                }
+
+                commons.threadWait(500); // using your wait method
+                retry++;
+            }
+
+            String captainName = currentCaptain
+                    .replace(" (Captain)", "")
+                    .trim();
+
+            sb.append(i)
+                    .append(". ")
+                    .append(teamName)
+                    .append(" - Skipper : ")
+                    .append(captainName)
+                    .append("\n");
+
+            // update for next iteration
+            previousCaptain = currentCaptain;
         }
 
         String logOutput = sb.toString();
         System.out.println(logOutput);
         commons.logToCucumberReport(scenario, logOutput);
-
     }
-
-
 }
