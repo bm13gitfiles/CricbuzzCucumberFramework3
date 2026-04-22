@@ -103,22 +103,14 @@ public class PSLSeriespageElements extends WebCommons {
     @FindBy(xpath = "//div[contains(@class,'w-full px-4 py-2 tb:cursor-pointer items-center flex justify-between border-b')]//span[1]")
     public List<WebElement> pslTeamNames;
 
-
     @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span[contains(text(),'Captain')]/..")
     public WebElement pslTeamCaptain;
-
 
     @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//span//parent::span")
     public List<WebElement> pslTeamSquadPlayer;
 
     @FindBy(xpath = "//div[@class='pl-3 tb:text-base']//p")
     public List<WebElement> pslTeamSquadRole;
-
-
-
-
-
-
 
 
 
