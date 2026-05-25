@@ -40,7 +40,6 @@
           <groupId>org.testng</groupId>
           <artifactId>testng</artifactId>
           <version>7.10.2</version>
-          <scope>test</scope>
       </dependency>
 
       <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -109,7 +108,6 @@
                     <version>3.2.1</version>
                     <configuration>
                         <includes>
-                            <!-- Match your runner class -->
                             <include>**/Runner.java</include>
                         </includes>
                         <testFailureIgnore>false</testFailureIgnore>
