@@ -88,7 +88,7 @@ public class EmailUtilities {
             email.setSubject("Cricbuzz Automation Report | Browser: " + browser + " | Tags: " + tagName);
 
             String msg = "Hi Team,\n\n"
-                    + "Please find attached the automation execution report for the Cricbuzz test suite (if available).\n\n"
+                    + "Please find attached the automation execution report for the Cricbuzz test suite.\n\n"
                     + "Browser Used: " + browser + "\n"
                     + "Tags Executed: " + tagName + "\n\n"
                     + "Regards,\nAutomation Team";
