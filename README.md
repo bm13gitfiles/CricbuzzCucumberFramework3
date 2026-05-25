@@ -110,8 +110,6 @@ Best Practices Implemented
 - Javadoc documentation for all methods
 - CI/CD ready with JSON reports and email notifications
 
-This version keeps the structure professional, reduces emoji usage, and makes the README easier to scan.
-Would you like me to also add badges (like build status, test coverage, Java version) at the top of the README for a more polished GitHub look?
 
 
 
