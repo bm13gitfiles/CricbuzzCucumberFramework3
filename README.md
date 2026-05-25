@@ -1,4 +1,4 @@
-**CricbuzzCucumberFramework3**
+**CricbuzzCucumberFramework**
 
 A comprehensive Behavior-Driven Development (BDD) automation testing framework for the Cricbuzz website, built with Cucumber, Selenium, and TestNG. This framework validates IPL (Indian Premier League), PSL (Pakistan Super League), and ICC Rankings pages with data-driven testing, detailed reporting, and email notifications
 
@@ -7,7 +7,7 @@ A comprehensive Behavior-Driven Development (BDD) automation testing framework f
 **Project Overview:**
 
 
-CricbuzzCucumberFramework3 is a production-ready test automation framework designed to:
+CricbuzzCucumberFramework is a production-ready test automation framework designed to:
 - Automate web UI testing for Cricbuzz using Gherkin scenarios
 - Validate critical features: Series pages (IPL/PSL), news sections, points tables, player statistics, teams/captains, and rankings
 - Capture evidence: Screenshots on failure, attached to HTML reports and email notifications
